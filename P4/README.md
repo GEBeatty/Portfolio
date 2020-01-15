@@ -1,0 +1,1 @@
+P4 is a program that takes in a text file network representation, and can create a number of different functions on it, including testing if the network is entirely copper-connected, and finding the shortest path through the network.
