@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Battleship Game</title>
+        <meta name="autho" content="Grace Beatty">
+        <link rel="stylesheet" href="gridStyle.css">
+    </head>
+    <body>
+        <h1>BATTLESHIP</h1>
+        <script>
+            /*
+                This function determines if a ship's coordinates are
+                horizontal or vertical.
+                returns 0 if horizontal
+                returns 1 if vertical
+                returns 2 if they are neither
+            */
+            function alignment(shipCoords){
+                // Equal letters = vertical
+                if(shipCoords.charAt(0) == shipCoords.charAt(3)){
+                    return 1;
+                // Equal numbers = horizontal
+                } else if (shipCoords.charAt(1) == shipCoords.charAt(4)) { 
+                    return 0;
+                }
+                return 2;
+            } 
+            /*
+                This function create the ship coordinates and returns
+                them in an array. The third index is used to determine
+                whether or not that block has been hit.
+
+                Ship coordinate format: Column, Row, Ship Type, Sunk
+             */
+            function createCoords(shipType, shipLength, shipCoords){
+                // var newCoords = [];
+                var coords = "";
+                if(alignment(shipCoords) == 0){ // Horizontal
+                    var col = (shipCoords.charCodeAt(0) - 97);
+                    var row = (Number(shipCoords.charAt(1))) - 1;
+                    for(var x = 0; x < shipLength; x++){
+                        if(x == shipLength-1){
+                            coords = coords+col.toString()+","+row.toString()+","+shipType+",t";
+                        } else {
+                            coords = coords+col.toString()+","+row.toString()+","+shipType+",t:";
+                        }                        
+                        // newCoords.push(coords);
+                        col++;
+                    }
+                } else if (alignment(shipCoords) == 1){ // Vertical
+                    var col = shipCoords.charCodeAt(0) - 97;
+                    var row = Number(shipCoords.charAt(1)) - 1;
+                    for(var x = 0; x < shipLength; x++){
+                        // var colRow = col + String(row);
+                        if(x == shipLength-1){
+                            coords = coords+col.toString()+","+row.toString()+","+shipType+",t";
+                        } else {
+                            coords = coords+col.toString()+","+row.toString()+","+shipType+",t:";
+                        }    
+                        // newCoords.push(coords);
+                        row++;
+                    }
+                } else {
+                    return null;
+                }
+                return coords;
+            }
+            /*
+                This function creates coordinate arrays and sends
+                them back.
+                It's mostly helpful as an in-between for the main 
+                program and the createCoords function
+             */
+            function shipPosition(shipType, shipCoords){
+                var newCoords;
+                if(shipType == "a"){
+                    newCoords = createCoords(shipType,5,shipCoords);
+                } else if (shipType == "b") {
+                    newCoords = createCoords(shipType,4,shipCoords);
+                } else if (shipType == "s") {
+                    newCoords = createCoords(shipType,3,shipCoords);
+                }
+                return newCoords;
+            }
+
+            /* Format of ship strings: 
+               A:A1-A5;B:B6-E6; S:H3-J3
+               A(A1-A5); B(B6-E6); S(H3-J3);
+               B(B6-E6);S(H3-J3);A(A1-A5)
+               Ship type and coords must be separated
+               Take into account possible spaces
+            */
+            var p1shiptexts = sessionStorage.getItem("p1ShipString");
+            p1shiptexts = p1shiptexts.toLowerCase();
+            p1shiptexts = p1shiptexts.replace(/\s+/g, ''); // Remove all spaces
+            p1ships = p1shiptexts.split(/[:;\(\)]+/g);
+            if(p1ships[p1ships.length - 1] == ''){
+                p1ships.pop();
+            }
+            var p2shiptexts = sessionStorage.getItem("p2ShipString");
+            p2shiptexts = p2shiptexts.toLowerCase();
+            p2shiptexts = p2shiptexts.replace(/\s+/g, ''); // Remove all spaces
+            p2ships = p2shiptexts.split(/[:;\(\)]+/g);
+            if(p2ships[p2ships.length - 1] == ''){
+                p2ships.pop();
+            }
+            // Load coordinates into methods and get coordinate strings
+            // This will help later when we need to explode these into arrays
+            var p1Coords = "";
+            p1Coords = p1Coords + shipPosition(p1ships[0], p1ships[1]) + ":";
+            p1Coords = p1Coords + shipPosition(p1ships[2], p1ships[3]) + ":";
+            p1Coords = p1Coords + shipPosition(p1ships[4], p1ships[5]);
+            var p2Coords = "";
+            p2Coords = p2Coords + shipPosition(p2ships[0], p2ships[1]) + ":";
+            p2Coords = p2Coords + shipPosition(p2ships[2], p2ships[3]) + ":";
+            p2Coords = p2Coords + shipPosition(p2ships[4], p2ships[5]);
+            
+            // Save coordinates in session
+            sessionStorage.setItem("p1Coords", p1Coords);
+            sessionStorage.setItem("p2Coords", p2Coords);
+            // Set player beginning scores
+            sessionStorage.setItem("p1Score", 24);
+            sessionStorage.setItem("p2Score", 24);
+            // Turns: true = p1, false = p2
+            sessionStorage.setItem("turn", "true");
+            // Gameover: 0=no, 1=yes
+            sessionStorage.setItem("gameover",0);
+            // Set up ships
+            sessionStorage.setItem("p1A",5);
+            sessionStorage.setItem("p1B",4);
+            sessionStorage.setItem("p1S",3);
+            sessionStorage.setItem("p2A",5);
+            sessionStorage.setItem("p2B",4);
+            sessionStorage.setItem("p2S",3);
+
+            // Polite dialogue
+            document.write("Welcome " + sessionStorage.getItem("p1Name") +
+            " and " + sessionStorage.getItem("p2Name") + "!<br>");
+
+            document.write(sessionStorage.getItem("p1Name") + " will go first. " +
+            "Please press the start button to begin.<br>");
+        </script>
+        <form action="battleshipGrid.html">
+            <input type="submit" value="Start">
+        </form>
+    </body>
+</html>

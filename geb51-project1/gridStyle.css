@@ -1,0 +1,27 @@
+.miss {
+    background-color: white;
+}
+
+.hit {
+    background-color: lightcoral;
+}
+
+.unknown {
+    background-color: lightblue;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.ship {
+    background-color: grey;
+}
+
+th, td {
+    padding: 1em;
+}
+
+body {
+    background-color: lightseagreen;
+}

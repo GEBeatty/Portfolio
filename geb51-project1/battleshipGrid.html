@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Battleship Game</title>
+        <meta name="autho" content="Grace Beatty">
+        <link rel="stylesheet" href="gridStyle.css">
+    </head>
+    <body>
+        <h1>BATTLESHIP</h1>
+        <script>
+            function arrToString(arr){
+                var str = "";
+                // Add to string accordingly
+                for(var x = 0; x < arr.length; x++){
+                    if(x != (arr.length-1)){
+                        str = str+arr[x]+":";
+                    } else {
+                        str = str+arr[x];
+                    }
+                }
+                // Return array string
+                // alert("new str is :" + str);
+                return str;
+            }
+
+            // Updates a ship's status. Returns 0 if not sunk, 1 if sunk
+            function shipCheck(shipType){
+                var shipCt = Number(sessionStorage.getItem(oTurn+shipType));
+                shipCt = shipCt - 1;
+                sessionStorage.setItem(oTurn+shipType, shipCt);
+                if(shipCt == 0){ // Sunk
+                    return 1;
+                }
+                return 0; // Not sunk
+            }
+            
+            function testWaters(id){
+                // Id is col,row
+                id = id.substring(3,5);
+                var found = false;
+                // Test each value in opposing array for id
+                for(var v = 0; v < opCoords.length; v++){
+                    coords = opCoords[v];
+                    if(!found){
+                        var coordId = coords.charAt(0)+coords.charAt(2);
+                        // If there's a match, it's a hit! Edit op array
+                        // 0,1,m,f
+                        if(coordId == id){
+                            var shipChar = coords.charAt(4);
+                            // Since coords is a string, we must create a new string
+                            var newStr = coords.substr(0,6)+"f"; // Sink ship
+                            opCoords[v] = newStr; 
+                            var newCoords = arrToString(opCoords);
+                            sessionStorage.setItem(oTurn+"Coords", newCoords);
+                            // Score goes down by 2
+                            opScore = opScore - 2;
+                            sessionStorage.setItem(oTurn+"Score", opScore);
+                            found = true;
+                            v = opCoords.length;
+                            // Check the ship count. 0 is alive, 1 is sunk
+                            shipStatus = shipCheck(shipChar.toUpperCase());
+                            // Alert user
+                            if(shipStatus==1){
+                                if(shipChar=="a"){
+                                    alert("HIT! You sunk the aircraft carrier!");
+                                } else if(shipChar=="b"){
+                                    alert("HIT! You sunk the battleship!");
+                                } else if(shipChar=="s"){
+                                    alert("HIT! You sunk the submarine!");
+                                }                                
+                            } else { // Regular hit
+                                alert("HIT!");
+                            }                        
+                        }
+                    }
+                }
+                // If we didn't find a match, it's a miss
+                if(!found){
+                    opCoordStr = opCoordStr+":"+id.charAt(0)+","+id.charAt(1)+",m,f";
+                    sessionStorage.setItem(oTurn+"Coords", opCoordStr);
+                    alert("MISS!");
+                }
+
+                // Determine if the game is over
+                // If opponent is 0, then other player wins
+                if(opScore == 0){
+                    sessionStorage.setItem("gameover",1);
+                    sessionStorage.setItem("winner",pTurn);
+                }
+                
+                // Last, switch turns
+                var turn = sessionStorage.getItem("turn");
+                if(turn == "true"){ 
+                    sessionStorage.setItem("turn", "false");
+                } else {
+                    sessionStorage.setItem("turn", "true");
+                }
+
+                // And go to the in-between page
+                window.location.href = 'battleshipMid.html';
+            }
+
+            /*
+                MAIN
+             */
+            // Turn set-up: whose turn is it?
+            var pTurn = "";
+            var oTurn = "";
+            if(sessionStorage.getItem("turn") == "true"){
+                pTurn = "p1";
+                oTurn = "p2";
+            } else {
+                pTurn = "p2";
+                oTurn = "p1";
+            }
+            // Javascript saves all of these as Strings, so we need to convert
+            var coordStr = sessionStorage.getItem(pTurn+"Coords");
+            var coords   = coordStr.split(":");
+            var opCoordStr = sessionStorage.getItem(oTurn+"Coords");
+            var opCoords   = opCoordStr.split(":");
+            var opScore  = Number(sessionStorage.getItem(oTurn+"Score"));
+            
+            /*
+                TOP GRID CREATION
+             */
+            document.write("<h2>Battlefield</h2>");
+            document.write("<table>");
+                document.write("<tr><th> </th>");
+                // Create row of Letter column labels
+                for(var x = 0; x < 10; x++){
+                    document.write("<th>"+ String.fromCharCode(x+65) +"</th>");
+                } document.write("</tr>");
+                // Create each row, complete with id and onClick
+                for(var x = 0; x < 10; x++){ // New row
+                    document.write("<tr>");
+                    document.write("<td>"+(x+1)+"</td>");
+                    for(var y = 0; y < 10; y++){ // Each column
+                        document.write("<td id='top"+y.toString()+x.toString()+"' class='unknown clickable' onclick='testWaters(this.id)'></td>");
+                    }
+                    document.write("</tr>");
+                }
+            document.write("</table>");
+            // Read from opponent's coordinates
+            opCoords.forEach(opc => {
+                var coordArr = opc.split(",");
+                // If not sunk=>false, then change the cell
+                if(coordArr[3] == "f"){
+                    $topID = "top"+coordArr[0]+coordArr[1];
+                    var cell = document.getElementById($topID);
+                    // Red if ship, white if missing
+                    if(coordArr[2] == "m"){
+                        cell.className = "miss";
+                        cell.onclick = "";
+                    } else {
+                        cell.className = "hit";
+                        cell.onclick = "";
+                    }
+                }
+            });
+
+            /*
+                BOTTOM GRID CREATION
+             */
+             document.write("<h2>Your Ships</h2>");
+             document.write("<table>");
+                document.write("<tr><th> </th>");
+                // Create row of letter column labels
+                for(var x = 0; x < 10; x++){
+                    document.write("<th>"+ String.fromCharCode(x+65) +"</th>");
+                } document.write("</tr>");
+                // Set up the red of the grid with id'd cells
+                for(var x = 0; x < 10; x++){
+                    document.write("<tr>");
+                    document.write("<td>"+(x+1)+"</td>");
+                    for(var y = 0; y < 10; y++){
+                        document.write("<td id='bot"+y.toString()+x.toString()+"' class='unknown'></td>");
+                    }
+                    document.write("</tr>");
+                }
+                // Read from personal coordinates
+                coords.forEach(c => {
+                    // document.write(c);
+                    // First, get the cell id
+                    $botID = "bot"+c.charAt(0)+c.charAt(2);
+                    // document.write($botID);
+                    var cell = document.getElementById($botID);
+                    // document.write(cell);
+                    // If it's a missing spot, paint it white
+                    if(c.charAt(4) == "m"){
+                        cell.className = "miss";
+                    } else {
+                        // document.write(coord[2] + " ");
+                        // Put ship abbr. in the cell
+                        cell.innerHTML = c.charAt(4).toUpperCase();
+                        // If it has been sunk, turn it red, otherwise it's grey
+                        if(c.charAt(6) == "f"){
+                            cell.className = "hit";
+                        } else {
+                            cell.className = "ship";
+                        }
+                    }
+                });
+
+            document.write("</table>");
+        </script>
+    </body>
+</html>

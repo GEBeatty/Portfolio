@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Battleship Game</title>
+        <meta name="autho" content="Grace Beatty">
+        <link rel="stylesheet" href="gridStyle.css">
+    </head>
+    <body>
+        <h1>BATTLESHIP</h1>
+        <!-- Use form to take user data -->
+        <h2>Player 1</h2>
+        <form id="frm1" onsubmit="checkP1Data()" action="battleship2.html" method="POST">
+            Name: 
+            <input type="text" name="player1Name"><br>
+            Ship String: 
+            <input type="text" name="player1Ships"><br>
+            <input type="submit" value="Ready"><br>
+        </form>
+        <script>
+            function checkP1Data(){
+                // Load form data
+                var form1 = document.getElementById("frm1");
+                var key = "p1Name";
+                // Submit user data
+                sessionStorage.setItem(key,form1.elements[0].value);
+                key = "p1ShipString";
+                sessionStorage.setItem(key, form1.elements[1].value);
+            }
+
+            function validate(){
+                p1shiptexts = p1shiptexts.toLowerCase();
+                p1shiptexts = p1shiptexts.replace(/\s+/g, ''); // Remove all spaces
+                p1ships = p1shiptexts.split(/[:;\(\)]+/g);
+                if(p1ships[p1ships.length - 1] == ''){
+                    p1ships.pop();
+                }
+
+                // If it has passed the tests, return true
+                return true;
+            }
+        </script>
+    </body>
+</html>

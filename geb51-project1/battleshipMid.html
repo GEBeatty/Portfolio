@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Battleship Game</title>
+        <meta name="autho" content="Grace Beatty">
+        <link rel="stylesheet" href="gridStyle.css">
+    </head>
+    <body>
+        <h1>BATTLESHIP</h1>
+        <script>
+            function nextTurn(){
+                window.location.href = 'battleshipGrid.html';
+            }
+
+            function playAgain(){
+                sessionStorage.clear();
+                window.location.href = 'battleship.html';
+            }
+
+            var gameover = sessionStorage.getItem("gameover");
+            // If game is finished, stop and redirect. Else, continue
+            if(gameover == 1){ // finished
+                var prefix = sessionStorage.getItem("winner");
+                var winner = sessionStorage.getItem(prefix+"Name");
+                var winScore = Number(sessionStorage.getItem(prefix+"Score"));
+
+                document.write(winner + " wins! Congratulations!<br><br>");
+                document.write("Click the button to play again!<br>");
+                document.write("<button onclick='playAgain()'>Play Again!</button>");
+                document.write("<br><br>");
+
+                var scores = "";
+                // Set up scoreboard
+                var local = localStorage.getItem("scoreboard");
+                if(localStorage.getItem("scoreboard") != null){
+                    scores = localStorage.getItem("scoreboard");
+                    var scoreArr = scores.split(":");
+                    var splice = true;
+                    // Compare the score to each in the highscores
+                    for(var x = 0; x < scoreArr.length; x++){
+                        var element = scoreArr[x];
+                        var elem = element.split(",");
+                        var scoreNum = Number(elem[1]);
+                        // If the winner's score is higher, splice it in
+                        if(winScore > scoreNum && splice){
+                            winStr = winner+","+winScore;
+                            scoreArr.splice(x, 0, winStr);
+                            scoreArr.pop();
+                            splice = false;
+                        }
+                    }
+                    // Load the new scores
+                    var newScores = scoreArr.join(":");
+                    localStorage.setItem("scoreboard",newScores);
+                } else {
+                    var winnerStr = winner + "," + winScore;
+                    var m = 0;
+                    while (m < 9){
+                        winnerStr = winnerStr + ":_,-1";
+                        m++;
+                    }
+                    localStorage.setItem("scoreboard",winnerStr);
+                }
+                // Display the scoreboard
+                document.write("<h3>Top Scores</h3><br>");
+                topScores = localStorage.getItem("scoreboard");
+                topScoresArr = topScores.split(":");
+                topScoresArr.forEach(elem => {
+                    e = elem.split(",");
+                    if(Number(e[1])>-1){
+                        document.write(e[0], " : " + e[1] + "<br>");
+                    }
+                });
+                
+            } else {
+                var nextPlayer = "";
+                if(sessionStorage.getItem("turn") == "true"){ // Player 1
+                    nextPlayer = sessionStorage.getItem("p1Name");
+                } else { // Player 2
+                    nextPlayer = sessionStorage.getItem("p2Name");
+                }
+                document.write("Press Ready to start "+nextPlayer+"'s turn.<br>");
+                document.write("<button onclick='nextTurn()'>Ready!</button>")
+            }            
+        </script>
+    </body>
+</html>
