@@ -1,0 +1,33 @@
+====================================================
+CS/COE 1501 Assignment Information Sheet
+-----------------------------------------
+You must submit an information sheet with every assignment. Also be sure
+to submit all materials following the procedures described on the 
+submission procedures page.
+
+Name: Grace Beatty
+Lecture section: D, non-writing
+Recitation day and time: Friday, 12:00
+
+Assignment #: 4
+Program due date: 4/4/19
+Handed in date: 4/4/19
+Source code file name(s): NetworkAnalysis.java
+Other file name(s) (if relevant): 
+Stack.java
+Queue.java 
+PrimMST.java
+MyDijkstra.java 
+IndexMinPQ.java 
+DepthFirstSearch.java 
+Bag.java 
+
+Does your program run without error: To the best of my knowledge, yes.
+
+If not, what is/are the error(s) and which parts of your
+program run correctly?: N/A
+
+Additional comments to the grader:
+When my program runs into a minimum spanning forest, it only replies with 
+a statement saying the graph is not an MST, and prints no edges. Not sure 
+if that's a big deal but I wanted to mention it just in case.  

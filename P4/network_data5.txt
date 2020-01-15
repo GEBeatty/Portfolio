@@ -1,0 +1,5 @@
+5
+0 1 optical 10000 10
+1 2 optical 10000 10
+2 3 optical 10000 10
+3 4 optical 10000 10
