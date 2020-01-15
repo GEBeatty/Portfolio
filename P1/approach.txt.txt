@@ -1,0 +1,18 @@
+Grace Beatty - Project 1
+
+Approach
+
+I utilized my existing DLB sort in order to create a history trie for the user.
+It accepts a file, creates a trie, and then rewrites over the existing file to hold
+the user's words as well as their frequency of usage. I figured this would be a good
+structure to use as I already had it on hand, and it does well with storing spase
+information
+
+In addition, I utilized a website for assistance in implementing the Radix Sort
+part of the program:
+https://www.geeksforgeeks.org/radix-sort/
+With a Theta of NK sort time (considering number of elements and size of said elements),
+I figured it would scale well if the history trie list were to ever get very large. In
+this case, the sort would need to go through each of the found history elements, create
+2 arrays based on those elements, find the positions of the first array (sorted frequencies)
+and then put the frequencies and nodes in their respective spots in the array.

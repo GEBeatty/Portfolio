@@ -1,0 +1,185 @@
+------- FILE SIZES AND THEIR RATIOS -------
+
+ALL FILES MEASURED IN KB
+
+--- all.tar ---
+Original: 2960
+LZW compressed: 1804
+    ratio: 1.64
+MyLZW Do-nothing: 1751
+    ratio: 1.69
+MyLZW Reset: 1151
+    ratio: 2.57
+MyLZW Monitor: 1778
+    ratio: 1.66
+7Zip 7z: 810
+    ratio: 3.65
+
+--- assig2.doc ---
+Original: 85
+LZW compressed: 73
+    ratio: 1.16
+MyLZW Do-nothing: 40
+    ratio: 2.125
+MyLZW Reset: 40
+    ratio: 2.125
+MyLZW Monitor: 40
+    ratio: 2.125
+7Zip 7z: 21
+    ratio: 4.04
+
+--- bmps.tar ---
+Original: 1080
+LZW compressed: 904
+    ratio: 1.19
+MyLZW Do-nothing: 80
+    ratio: 13.5
+MyLZW Reset: 80
+    ratio: 13.5
+MyLZW Monitor: 80
+    ratio: 13.5
+7Zip 7z: 53
+    ratio: 20.37
+
+--- code2.txt ---
+Original: 57
+LZW compressed: 24
+    ratio: 2.375
+MyLZW Do-nothing: 21
+    ratio: 2.71
+MyLZW Reset: 21
+    ratio: 2.71
+MyLZW Monitor: 21
+    ratio: 2.71
+7Zip 7z: 13
+    ratio: 4.38
+
+--- code.txt ---
+Original: 71
+LZW compressed: 31
+    ratio: 2.29
+MyLZW Do-nothing: 24
+    ratio: 2.95
+MyLZW Reset: 24
+    ratio: 2.95
+MyLZW Monitor: 24
+    ratio: 2.95
+7Zip 7z: 14
+    ratio: 5.07
+
+--- edit.exe ---
+Original: 231
+LZW compressed: 245
+    ratio: 0.94
+MyLZW Do-nothing: 153
+    ratio: 1.5
+MyLZW Reset: 149
+    ratio: 1.55
+MyLZW Monitor: 153
+    ratio: 1.5
+7Zip 7z: 96
+    ratio: 2.4
+
+--- frosty.jpg ---
+Original: 124
+LZW compressed: 174
+    ratio: 0.71
+MyLZW Do-nothing: 160
+    ratio: 0.775
+MyLZW Reset: 168
+    ratio: 0.73
+MyLZW Monitor: 160
+    ratio: 0.775
+7Zip 7z: 124
+    ratio: 1
+
+--- gone_fishing.bmp ---
+Original: 17
+LZW compressed: 10
+    ratio: 1.7
+MyLZW Do-nothing: 9
+    ratio: 1.88
+MyLZW Reset: 9
+    ratio: 1.88
+MyLZW Monitor: 9
+    ratio: 1.88
+7Zip 7z: 8
+    ratio: 2.125
+
+--- large.txt ---
+Original: 1193
+LZW compressed: 591
+    ratio: 2.01
+MyLZW Do-nothing: 491
+    ratio: 2.42
+MyLZW Reset: 516
+    ratio: 2.31
+MyLZW Monitor: 491
+    ratio: 2.42
+7Zip 7z: 394
+    ratio: 3.02
+
+--- Lego-big.gif ---
+Original: 92
+LZW compressed: 126
+    ratio: 0.73
+MyLZW Do-nothing: 120
+    ratio: 0.76
+MyLZW Reset: 120
+    ratio: 0.76
+MyLZW Monitor: 120
+    ratio: 0.76
+7Zip 7z: 91
+    ratio: 1.01
+
+--- medium.txt ---
+Original: 25
+LZW compressed: 13
+    ratio: 1.92
+MyLZW Do-nothing: 13
+    ratio: 1.92
+MyLZW Reset: 13
+    ratio: 1.92
+MyLZW Monitor: 13
+    ratio: 1.92
+7Zip 7z: 11
+    ratio: 2.27
+
+--- texts.tar ---
+Original: 1350
+LZW compressed: 989
+    ratio: 1.36
+MyLZW Do-nothing: 584
+    ratio: 2.31
+MyLZW Reset: 577
+    ratio: 2.33
+MyLZW Monitor: 584
+    ratio: 2.31
+7Zip 7z: 427
+    ratio: 3.16
+
+--- wacky.bmp ---
+Original: 901
+LZW compressed: 5
+    ratio: 180.2
+MyLZW Do-nothing: 4
+    ratio: 225.25
+MyLZW Reset: 4
+    ratio: 225.25
+MyLZW Monitor: 4
+    ratio: 225.25
+7Zip 7z: 3
+    ratio: 300.33
+
+--- winnt256.bmp ---
+Original: 154
+LZW compressed: 156
+    ratio: 0.98
+MyLZW Do-nothing: 62
+    ratio: 2.48
+MyLZW Reset: 62
+    ratio: 2.48
+MyLZW Monitor: 62
+    ratio: 2.48
+7Zip 7z: 43
+    ratio: 3.58

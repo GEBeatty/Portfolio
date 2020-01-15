@@ -1,0 +1,107 @@
+CarTracker Documentation
+by Grace Beatty
+
+* Resizing methods are included in this program, however due to they 
+being used infrequently, and from Dr. Garrison's notes that O(n) 
+resizing will be looked over, the rest of the program still meets the 
+requirements of an O(log n) runtime *
+
+The CarTracker program uses two specific data structures in order
+to achieve a logarithmic runtime: heaps and hashmaps.
+
+- Heap Structure
+Since we were given the option to either utilize the textbook's code 
+or create our own priority queue, I opted to create my own. When I 
+write the code myself, I find that I tend to understand it more.
+The different runtimes of the indexed heap structure are:
+get Min/Max: O(1)
+    Since the most important object in the heap is at the top always,
+    we need only retrieve the top of the heap, which can be done in
+    constant time
+insert: O(log n)
+    When inserting into the heap, the node is placed at the end of the 
+    structure, and then compared with its parents to see if it should 
+    move up higher. At worst, this node would travel the length of the 
+    heap, which would take O(log n) time.
+remove: O(log n)
+    When removing a node from the heap, we replace it with the last 
+    node, and then either move that node higher up in the structure, 
+    or further down depending on its priority.
+update: O(log n)
+    This function operates in a similar fashion as remove, but instead
+    of getting rid of a node, we're just changing the data inside it 
+    before determining if it deserves a different spot in the heap.
++ Remove and update are both handled in an O(log n) provided the priority 
+queue is indexable. +
+Because of these favorable function runtimes, I figured it would be 
+wise to implement my own heap data structure for the project, and 
+for the most part, it worked well. The only fallback would be the 
+fact that, since I handle my individual node indicies within the 
+nodes themselves instead of using an external structure, unique heaps 
+have to be created for each type of heap (price, mileage, make and 
+model, etc). However, once I realized the amount of work it would take 
+in order to fix the situation I had gotten myself into, it was too 
+late to try a different strategy.
+
+- HashMap Structure
+In this assignment, I utilized the HashMap structure provided with Java 
+8 in order to create both a dictionary-esque structure to house my many 
+nodes, and to hold my multiple heaps for different makes and models of 
+vehicles. The runtimes of this structure are:
+get: O(log n)
+insert: o(log n)
+remove: O(log n)
+Each of these runtimes can be explained in the same fashion: first the 
+VIN or make/model is hashed to an index, where the object can be placed. 
+Java's HashMap structure uses a closed addressing structure. When a 
+collision occurs, Java chains the entries together into a list, until 
+the list reaches 8 links. It then changes the nodes in that list into 
+what it calls TreeNodes, and sets up a red-black BST in order to 
+achieve optimum performance (since using a BST on too few elements 
+would result in a poorer runtime).
+For each of these methods then, the key is hashed and brought to its 
+place in the array with a constant time, and from then the worst case 
+would be to traverse the length of the red-black BST, a task that would 
+take O(log n).
+This structure was a very convenient find for me, and I was happy to 
+utilize it after attempting to create my own hashmap and realizing I'd 
+need to implement a BST in order to meet runtime requirements.
+
+- Other Structures
+* CarNode
+CarNodes are used to hold all of a car's information, as well as its 
+different indicies for different heaps. I figured this would be a good 
+idea, since I wouldn't need to worry about updating indicies in a 
+remote location, and could just use my CarNode to keep track, pulling 
+the indicies from it when I wanted. This proved to be more difficult 
+when coming to the heap implementation though, as I've already 
+mentioned. A few other conveniences it offers is the ability to compare 
+other nodes with the comparePrice() and compareMiles() functions, methods 
+to easily swap the indicies of two nodes (handy when swimming or sinking),
+and a handy display() method that tastefully shows the car's documentation.
+* HeapHolder
+In an attempt to cut down on memory usage, I created the HeapHolder 
+class in order to store both the make/model price and mileage heaps in 
+one structure, instead of having two different HashMaps, one for each 
+type of heap. This adds a little overhead, but saves me from creating 
+an entirely new HashMap for price or mileage for make/model. It also 
+contains shortcuts to each of the heaps' functions.
+* BaseHeap
+This class was mainly a gimme class, as it allowed me to place common 
+elements and methods shared by the heaps into one spot, so I wouldn't 
+need to rewrite them for each unique heap structure. That's why all of 
+my heaps extend from BaseHeap.
+
+- Memory Requirements
+Given N cars of P unique make/models entered into the program:
+N CarNodes are created
+2 heaps of size M, that may become bigger, hold N references each 
+1 HashMap of size K (resizable) to hold N node references 
+1 HashMap of size K (resizable) to hold P HeapHolders and 
+    2P heaps for make/models
+
+Altogether: N+2M+2K+3P, with a potential for each variable to grow larger
+
+
+- Sources
+* http://coding-geek.com/how-does-a-hashmap-work-in-java/#JAVA_8_improvements
