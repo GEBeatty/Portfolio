@@ -1,0 +1,77 @@
+html {
+    background-image: url("bearbackground.png");
+    background-repeat: repeat;
+    background-color: (0,0,0,0.5);
+}
+
+body {
+    opacity: 1.0;
+}
+
+.productImg {
+    width: 400px;
+    float: left;
+}
+
+.productContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin: 5%;
+}
+
+.bothSides{
+    background-color:burlywood;
+    border:2px black dotted;
+    padding: 2em;
+    flex-grow: 1;
+}
+
+.productSide {
+    text-align: center;
+    width: 50em;
+}
+
+.productDescription {
+    display: block;
+    background-color: darkorange;
+    font-family: 'Times New Roman', Times, serif;
+    height:400px;
+    min-width: 40em;
+}
+
+.formSide{
+    background-color: darkorange;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.shipping {
+    font-size: 0.75em;
+}
+
+.note {
+    display: block;
+    background-color: whitesmoke;
+    border: 5px orange solid;
+    font-size: 2em;
+    padding: 1em;
+}
+
+.order_list {
+    display: block;
+    background-color: whitesmoke;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-top: 0.5em;
+}
+
+.order_list table{
+    border-collapse: collapse;
+    background-color: antiquewhite;
+}
+
+.order_list table, .order_list th, .order_list td{
+    border: 2px black solid;
+    padding: 0.5em;
+}

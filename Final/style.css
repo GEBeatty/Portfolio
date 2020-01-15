@@ -1,0 +1,106 @@
+.num_mem_icon {
+    width: 1em;
+}
+
+.item_avail {
+    background-color: rgb(101, 226, 111);
+}
+.item_unavail {
+    background-color: rgb(201, 110, 110);
+}
+.item_rented {
+    background-color: rgb(106, 159, 228);
+}
+
+/**
+HEADER SETTINGS
+**/
+h1, h2, h3, h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(14, 58, 138);
+}
+
+h1 {
+    padding-left: 30%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 36pt;
+    font-weight: bold;
+}
+
+/**
+NAVIGATION SETTINGS
+**/
+nav li {
+    display: inline;
+    padding-left: 8pt;
+    padding-right: 8pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+}
+
+a.navi:link, a.navi:visited {
+    color: black;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: 2pt solid rgb(119, 167, 255);
+}
+
+a.navi:hover {
+    background-color: rgb(119, 167, 255);
+}
+
+a.welcome:link, a.welcome:visited {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    padding: 3px;
+    color: black;
+    text-decoration: none;
+    border-bottom: 2pt solid rgb(119, 167, 255);
+}
+a.welcome:hover {
+    background-color: rgb(119, 167, 255);
+}
+
+/**
+GROUP TABS SETTINGS
+**/
+.groupTab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.groupTab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 12px;
+    transition: 0.3s;
+}
+
+.groupTab button:hover {
+    background-color: #ddd;
+}
+.groupTab button.active {
+    background-color: #ccc;
+}
+
+.gTabContent {
+    display: none;
+    padding: 3px 8px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/**
+INPUT SETTINGS
+**/
+textarea {
+    padding: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+}
