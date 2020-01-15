@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}Budget Boi - {% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		{% block javascript %}{% endblock %}
+	</head>
+	<body>
+        <h1>Budget Boi</h1>
+		{% with flashes = get_flashed_messages() %}
+			{% if flashes %}
+			<ul class="flashes">
+			{% for message in flashes %}
+				<li>{{ message }}
+			{% endfor %}
+			</ul>
+			{% endif %}
+		{% endwith %}
+		<div class="body">
+			{% block body %}{% endblock %}
+		</div>
+	</body>
+</html>

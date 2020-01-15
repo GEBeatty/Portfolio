@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}{{ super() }}Log In{% endblock %}
+{% block body %}
+    <h2>Log In</h2>
+    {% if error %}<div>{{ error }}</div> {% endif %}
+    <form action="" method="post">
+        Username: <input type='text' name='log_username'><br>
+        Password: <input type='password' name='log_password'><br>
+        <input type='submit' name='log_submit'>
+    </form>
+    <br>
+    Click <a href="{{ url_for('register') }}">here</a> to register!
+{% endblock %}

@@ -1,0 +1,41 @@
+========================================
+CS/COE 1520 Assignment Information Sheet
+----------------------------------------
+
+You must submit an information sheet with every assignment. Also be sure
+to submit all materials following the procedures described on the
+submission procedures page.
+
+Name:  Grace Beatty
+
+Lecture section:  Tue/Thu 6:00pm
+
+Recitation day and time:  Fri 10:00am
+
+Assignment #:  4
+
+Program due date:  12/4/2019
+
+Handed in date:  12/4/2019
+
+Source code file name(s):
+budget.py
+script.js
+style.css
+layout.html
+index.html
+
+Other file name(s) (if relevant):
+
+
+Does your project run without error?: To the best of my knowledge, yes.
+
+
+If not, what is/are the error(s) and which parts of your program run
+correctly?:
+
+
+Additional comments to the grader:
+
+I previously updated my category totals during the GET call to categories. Since that call modifies the data set, I figured it wasn't a safe GET, so I modified my code so my category totals update whenever I POST a new purchase or DELETE a category. It was largely a copy-paste job.
+I did leave in the code in the GET request, but commented it out so it doesn't effect the function. In case something crazy DOES happen, un-commenting that section should make everything work again.

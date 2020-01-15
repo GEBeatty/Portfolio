@@ -1,0 +1,11 @@
+from messages.html:
+{% for mess_row in mess_arr %}
+    <tr>
+        <td>{{ mess_row.author.user_name }}</td>
+        <td>{{ mess_row.mess_text }}</td>
+        <td>{{ mess_row.mess_time }}</td>
+    <tr>
+{% endfor %}
+
+from message.html:
+<textarea rows=3 cols=50 id='message_text' name='message_text' form='post_form' placeholder='Type your message here'></textarea><br> 

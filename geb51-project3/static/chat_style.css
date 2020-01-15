@@ -1,0 +1,22 @@
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30pt;
+    background-color: lightseagreen;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20pt;
+}
+
+table {
+    border: 1pt solid black;
+    padding: 0.5em;
+}
+
+th, td {
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    border-bottom: 1pt solid lightseagreen;
+}

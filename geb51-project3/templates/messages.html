@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+<head>
+{% block title %}{{ super() }}{{ chat_title }}{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
+</head>
+{% block body %}
+        <a href="{{ url_for('main_chat') }}">Click here to go back to chatroom home</a><br><br>
+        {% if creator_id == user_id %}
+          <a href="{{ url_for('delete') }}">Click here</a> to delete this chatroom<br><br>
+        {% endif %}
+        <h2>Chatroom: {{ chat_title }}</h2>
+        <form id='post_form'>
+          <input type='hidden' id='user_name' value="{{ username }}">
+          <input type='hidden' id='chat_id' value="{{ chat_id }}">
+          <textarea rows=3 cols=50 id='message_text' name='message_text' form='post_form' placeholder='Type your message here'></textarea><br>
+          <input type='button' onclick="sendPost()" value='Send'>
+        </form>
+        {% if mess_check %}
+          <p id='above_table'></p>
+          <table id='post_table'>
+          </table>
+        {% else %}
+          <p id='above_table'></p>
+          <table id='post_table'>
+            {% for mess_row in mess_arr %}
+              <tr>
+                <td>{{ mess_row.author.user_name }}</td>
+                <td>{{ mess_row.mess_text }}</td>
+                <td>{{ mess_row.mess_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+              <tr>
+            {% endfor %}
+          </table>
+        {% endif %}
+{% endblock %}

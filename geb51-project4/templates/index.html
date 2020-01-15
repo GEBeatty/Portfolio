@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}{{ super() }}Main{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <h2 id="monthTitle"></h2>
+    <h2>Categories</h2>
+    <table id="catList">
+    </table>
+    <div id="uncat"></div>
+    <br>
+
+    Create new category:<br>
+    <form name="createCat">
+        Name: <input type="text" id="catName" name="" value="" /><br>
+        Limit: $<input type="number" id="catLimit" name="" value="" /><br>
+        <input type="button" id="catButton" value="Add Category" />
+    </form>
+
+    <br><br>
+    Create new purchase:<br>
+    <form name="createPur">
+        Description: <input type="text" id="purName" name="" value="" /><br>
+        Category: 
+        <select name="cats" id="purCat">
+
+        </select><br>
+        Amount: $<input type="number" id="purAmt" name="" value="" /><br>
+        Date: <input type="date" id="purDate" name="" value="" /><br>
+        <input type="button" id="purButton" value="Add Purchase" />
+    </form><br>
+
+    <h2>All Transactions</h2>
+    <table id="purList">
+    </table>
+{% endblock %}

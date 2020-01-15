@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}{{ super() }}Chatrooms{% endblock %}
+{% block body %}
+        <h2>Chatrooms</h2>
+        {% if chats_available == 1 %}
+          There are no chats available at this time<br>
+        {% else %}
+          <table>
+            <tr>
+              <th>Chat Name</th>
+              <th>Chat Owner</th>
+            </tr>
+            {% for chat_row in chat_arr %}
+              <tr>
+                <td><a href="{{ url_for('chat_room', chat_id=chat_row.chat_id) }}">{{ chat_row.chat_name }}</a></td>
+                <td>{{ chat_row.user_name }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        {% endif %}
+        <br>
+        <a href="{{ url_for('new_chat') }}">Click here to create a new chatroom!</a>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+========================================
+CS/COE 1520 Assignment Information Sheet
+----------------------------------------
+
+You must submit an information sheet with every assignment. Also be sure
+to submit all materials following the procedures described on the
+submission procedures page.
+
+Name:  Grace Beatty
+
+Lecture section:  Tu/Th 6:00-7:15
+
+Recitation day and time:  Fr 10-11
+
+Assignment #: 3
+
+Program due date: 11/13/2019
+
+Handed in date:  11/13/2019
+
+Source code file name(s):
+chat.py
+models.py
+script.js
+chatrooms.html
+layout.html
+login.html
+messages.html
+new_chat.html
+register.html
+chat_style.css
+
+
+Other file name(s) (if relevant): N/A
+
+Does your project run without error?: I believe so, yes.
+
+If not, what is/are the error(s) and which parts of your program run
+correctly?: N/A
+
+Additional comments to the grader:
+When the chatroom creator deletes a chatroom, a message pops up on-screen for the other users. It waits a few seconds for them to read it, then redirects them to the main chatroom page.
+

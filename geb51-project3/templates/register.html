@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}{{ super() }}Register{% endblock %}
+{% block body %}
+    <a href="{{ url_for('login') }}">Click here to go back to the main page</a>
+    <h2>Register</h2>
+    {% if error %}<div>{{ error }}</div> {% endif %}
+    <form action="" method="post">
+        Username: <input type='text' name='reg_username'><br>
+        Password: <input type='password' name='reg_password'><br>
+        <input type='submit' name='log_submit' value='Register'>
+    </form>
+{% endblock %}

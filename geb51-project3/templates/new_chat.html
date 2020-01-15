@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}{{ super() }}New Chat{% endblock %}
+{% block body %}
+        <a href="{{ url_for('main_chat') }}">Click here to go back to the main page</a>
+        <h2>New Chat</h2>
+        Name your chatroom and then hit the button:
+        <form action='' method='post'>
+          <input type='text' name='new_chat_name'>
+          <input type='submit' name='submit' value='Create Chat'>
+        </form>
+{% endblock %}
